@@ -17,6 +17,9 @@ li.completed {
   border-left-color: rgb(6, 170, 6);
   text-decoration: line-through;
 }
+li.completed p i {
+  color: rgb(6, 170, 6);
+}
 li i {
   font-size: 1.2rem;
 }
@@ -25,5 +28,11 @@ li i:first-child {
   margin-right: 1rem;
 }
 li .todo-title {
-  width: 70%;
+  position: relative;
+  width: 95%;
+}
+li .todo-title i {
+  position: absolute;
+  right: 0;
+  font-size: 1.2rem;
 }/*# sourceMappingURL=styles.css.map */

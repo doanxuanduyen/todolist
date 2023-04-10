@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import "reset-css";
 import "./styles.css";
@@ -20,7 +20,6 @@ TodoList.defaultProps = {
 };
 
 function TodoList() {
-  // List todo
   const [todoList, setTodoList] = useState([
     {
       id: uuidv4(),
@@ -33,10 +32,10 @@ function TodoList() {
       status: "completed",
     },
   ]);
-
   const [showDropdown, setShowDropdown] = useState(false);
   const [currentOption, setCurrentOption] = useState("All");
   const inputRef = useRef(null);
+  const dropdownRef = useRef(null);
   const [filterStatus, setFilterStatus] = useState("all");
 
   const handleShowDropdown = () => setShowDropdown((prev) => !prev);
@@ -70,7 +69,6 @@ function TodoList() {
     const updatedTodos = todoList.filter((todo) => todo.id !== id);
     setTodoList(updatedTodos);
   };
-
   function handleSetOptionAll() {
     function handleSetCurrentOption() {
       setCurrentOption("All");
@@ -81,7 +79,6 @@ function TodoList() {
     handleSetCurrentOption();
     handleShowOptionAll();
   }
-
   function handleSetOptionCompleted() {
     function handleSetCurrentOption() {
       setCurrentOption("Completed");
@@ -92,7 +89,6 @@ function TodoList() {
     handleSetCurrentOption();
     handleShowOptionCompleted();
   }
-
   function handleSetOptionUncompleted() {
     function handleSetCurrentOption() {
       setCurrentOption("Uncompleted");
@@ -113,15 +109,30 @@ function TodoList() {
       })
     );
   }
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownRef]);
+
   return (
     <div className="container">
+      {/* HEADER */}
       <header id="header">
         <i>
           <FontAwesomeIcon icon="bars" />
         </i>
         <h1 className="title">To do list</h1>
       </header>
+      {/* MAIN */}
       <main id="main">
+        {/* Input - select */}
         <form action="">
           <div className="input">
             <input
@@ -145,7 +156,7 @@ function TodoList() {
                 pauseOnHover
                 theme="#161d30" />
           </div>
-          <div className="select">
+          <div className="select" ref={dropdownRef}>
             <div
               className="select-option-choose"
               value="all"
@@ -183,6 +194,7 @@ function TodoList() {
             )}
           </div>
         </form>
+        {/* Todo items */}
         <ul>
           {rederTodoList.map((todo) => (
             <TodoItem

@@ -24,7 +24,6 @@ function TodoItem({ todo, onUpdateStatus, deleteTodo }) {
         setActive(!active);
         onUpdateStatus(todo.id, active ? "uncompleted" : "completed");
     }
-
     function handleDelete() {
         deleteTodo && deleteTodo(todo.id);
     }
@@ -34,7 +33,12 @@ function TodoItem({ todo, onUpdateStatus, deleteTodo }) {
             className={`todo-item ${active ? "completed" : "uncompleted"} ${todo.status
                 }`}
         >
-            <p className="todo-title" onClick={handleTodoOnclick}>{todo.title}</p>
+            <p className="todo-title" onClick={handleTodoOnclick}>
+                {todo.title}
+                <i>
+                    <FontAwesomeIcon icon="circle-check" />
+                </i>
+            </p>
             <div className="icon">
                 <i onClick={handleDelete}>
                     <FontAwesomeIcon icon="trash-can" />

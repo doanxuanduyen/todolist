@@ -83,6 +83,7 @@
   top: 5rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   left: 0;
+  z-index: 999;
 }
 .container #main form .select .option .select-option {
   width: 9rem;
