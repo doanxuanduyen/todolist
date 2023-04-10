@@ -1,0 +1,92 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #1e293b;
+  color: #9ca3af;
+  font-size: 10px;
+  font-family: "Inter", sans-serif;
+  height: 100vh;
+  padding-top: 10rem;
+}
+.container #header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+.container #header i {
+  font-size: 2rem;
+}
+.container #header h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 0 2rem;
+}
+.container #main form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+.container #main form .input {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-right: 2rem;
+  background: #1e293b;
+  border-bottom: 0.2rem solid #0f172a;
+  width: 32rem;
+  display: flex;
+  align-items: center;
+}
+.container #main form .input input {
+  border: none;
+  outline: none;
+  background: #1e293b;
+  color: rgb(156, 163, 175);
+  padding: 2rem;
+  width: 85%;
+  font-size: 1rem;
+}
+.container #main form .input button {
+  background: #1e293b;
+  color: rgb(156, 163, 175);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  padding: 2rem;
+}
+.container #main form .select {
+  border: none;
+  outline: none;
+  padding: 2rem;
+  background: #1e293b;
+  color: rgb(156, 163, 175);
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+  width: 9rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.container #main form .select .select-option-choose i {
+  position: absolute;
+  right: 1rem;
+}
+.container #main form .select .option {
+  position: absolute;
+  top: 5rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  left: 0;
+}
+.container #main form .select .option .select-option {
+  width: 9rem;
+  padding: 2rem;
+  border-bottom: 1px solid #0f172a;
+  background: #1e293b;
+}
+.container #main form .select .option :hover {
+  background: #171f2c;
+}/*# sourceMappingURL=styles.css.map */
