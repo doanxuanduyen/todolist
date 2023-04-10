@@ -10,7 +10,7 @@ library.add(fas);
 TodoItem.propTypes = {
     todo: PropTypes.shape({
         id: PropTypes.string.isRequired,
-        tittle: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
         status: PropTypes.string.isRequired,
     }).isRequired,
     onUpdateStatus: PropTypes.func.isRequired,
@@ -34,7 +34,7 @@ function TodoItem({ todo, onUpdateStatus, deleteTodo }) {
             className={`todo-item ${active ? "completed" : "uncompleted"} ${todo.status
                 }`}
         >
-            <p onClick={handleTodoOnclick}>{todo.tittle}</p>
+            <p className="todo-title" onClick={handleTodoOnclick}>{todo.title}</p>
             <div className="icon">
                 <i onClick={handleDelete}>
                     <FontAwesomeIcon icon="trash-can" />

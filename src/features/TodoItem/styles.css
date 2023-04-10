@@ -23,4 +23,7 @@ li i {
 li i:first-child {
   color: #EE4343;
   margin-right: 1rem;
+}
+li .todo-title {
+  width: 70%;
 }/*# sourceMappingURL=styles.css.map */

@@ -47,7 +47,7 @@
   width: 85%;
   font-size: 1rem;
 }
-.container #main form .input button {
+.container #main form .input .btn {
   background: #1e293b;
   color: rgb(156, 163, 175);
   cursor: pointer;
@@ -55,6 +55,9 @@
   outline: none;
   font-size: 1.5rem;
   padding: 2rem;
+}
+.container #main form .input .Toastify {
+  font-size: 1.2rem;
 }
 .container #main form .select {
   border: none;

@@ -24,12 +24,12 @@ function TodoList() {
   const [todoList, setTodoList] = useState([
     {
       id: uuidv4(),
-      tittle: "write",
+      title: "write",
       status: "uncompleted",
     },
     {
       id: uuidv4(),
-      tittle: "speak",
+      title: "speak",
       status: "completed",
     },
   ]);
@@ -43,12 +43,22 @@ function TodoList() {
   const handleOnclick = (pushTodoItem) => {
     pushTodoItem.preventDefault();
     const inputValue = inputRef.current.value;
-    if (inputValue !== 'string') {
-      toast.error('Pls, input string!')
+    if (inputValue === "") {
+      toast.error('Pls, input string!',{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "#161d30",
+        })
+        inputRef.current.value = "";
     }
     else {
       const newId = uuidv4();
-      const newTodo = { id: newId, tittle: inputValue, status: "uncompleted" };
+      const newTodo = { id: newId, title: inputValue, status: "uncompleted" };
       setTodoList([...todoList, newTodo]);
       inputRef.current.value = "";
     }
@@ -109,7 +119,7 @@ function TodoList() {
         <i>
           <FontAwesomeIcon icon="bars" />
         </i>
-        <h1 className="tittle">To do list</h1>
+        <h1 className="title">To do list</h1>
       </header>
       <main id="main">
         <form action="">
@@ -120,10 +130,20 @@ function TodoList() {
               ref={inputRef}
               placeholder="Add a new task"
             />
-            <button onClick={handleOnclick}>
+            <button className="btn" onClick={handleOnclick}>
               <FontAwesomeIcon icon="plus" />
-              <ToastContainer />
             </button>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="#161d30" />
           </div>
           <div className="select">
             <div
