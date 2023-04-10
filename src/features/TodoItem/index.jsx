@@ -10,7 +10,7 @@ library.add(fas);
 TodoItem.propTypes = {
     todo: PropTypes.shape({
         id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
+        tittle: PropTypes.string.isRequired,
         status: PropTypes.string.isRequired,
     }).isRequired,
     onUpdateStatus: PropTypes.func.isRequired,
