@@ -4,6 +4,8 @@ import "reset-css";
 import "./styles.css";
 import TodoItem from "./TodoItem";
 import { v4 as uuidv4 } from "uuid";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
@@ -28,7 +30,7 @@ function TodoList() {
     {
       id: uuidv4(),
       tittle: "speak",
-      status: "uncompleted",
+      status: "completed",
     },
   ]);
 
@@ -41,10 +43,15 @@ function TodoList() {
   const handleOnclick = (pushTodoItem) => {
     pushTodoItem.preventDefault();
     const inputValue = inputRef.current.value;
-    const newId = uuidv4();
-    const newTodo = { id: newId, tittle: inputValue, status: "uncompleted" };
-    setTodoList([...todoList, newTodo]);
-    inputRef.current.value = "";
+    if (inputValue !== 'string') {
+      toast.error('Pls, input string!')
+    }
+    else {
+      const newId = uuidv4();
+      const newTodo = { id: newId, tittle: inputValue, status: "uncompleted" };
+      setTodoList([...todoList, newTodo]);
+      inputRef.current.value = "";
+    }
   };
   const rederTodoList = todoList.filter(
     (todo) => filterStatus === "all" || filterStatus === todo.status
@@ -115,6 +122,7 @@ function TodoList() {
             />
             <button onClick={handleOnclick}>
               <FontAwesomeIcon icon="plus" />
+              <ToastContainer />
             </button>
           </div>
           <div className="select">
