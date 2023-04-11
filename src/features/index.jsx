@@ -14,12 +14,12 @@ function TodoList() {
   const [todoList, setTodoList] = useState([
     {
       id: uuidv4(),
-      title: "write",
+      title: "Đọc sách lúc 2h chiều",
       status: "uncompleted",
     },
     {
       id: uuidv4(),
-      title: "speak",
+      title: "Đi mua thịt lúc 4h30",
       status: "completed",
     },
   ]);
