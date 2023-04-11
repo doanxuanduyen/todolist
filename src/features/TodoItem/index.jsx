@@ -25,7 +25,7 @@ function TodoItem({ todo, onUpdateStatus, deleteTodo }) {
         onUpdateStatus(todo.id, active ? "uncompleted" : "completed");
     }
     function handleDelete() {
-        deleteTodo && deleteTodo(todo.id);
+        deleteTodo(todo.id);
     }
 
     return (

@@ -90,6 +90,8 @@ body .container #main form .select .option {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   left: 0;
   z-index: 999;
+  animation: rotateMenu 400ms ease-in-out forwards;
+  transform-origin: top center;
 }
 body .container #main form .select .option .select-option {
   width: 9rem;
@@ -99,4 +101,15 @@ body .container #main form .select .option .select-option {
 }
 body .container #main form .select .option :hover {
   background: #171f2c;
+}
+@keyframes rotateMenu {
+  0% {
+    transform: rotateX(-90deg);
+  }
+  70% {
+    transform: rotateX(20deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
 }/*# sourceMappingURL=styles.css.map */
