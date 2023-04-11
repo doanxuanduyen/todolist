@@ -100,15 +100,16 @@ function TodoList() {
       })
     );
   }
-  function handleUpdateTodoInput(todoId, newTitle, status) {
-    todoList.forEach((todo) => {
-      if (todo.id === todoId) {
-        inputRef.current.value = todo.title;
-        todo.title = newTitle;
-        todo.status = status;
-      }
-    })
-    setTodoList([...todoList]); 
+  function handleUpdateTodoInput(todoId, newTitle) {
+    setTodoList(
+      todoList.map((todo) => {
+        if (todo.id === todoId) {
+          inputRef.current.value = todo.title;
+          return { ...todo, title: newTitle };
+        }
+        return todo;
+      })
+    );
   }
   useEffect(() => {
     function handleClickOutside(event) {

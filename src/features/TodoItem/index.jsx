@@ -28,8 +28,9 @@ function TodoItem({ todo, onUpdateStatus, deleteTodo, onUpdateInput }) {
     function handleDelete() {
         deleteTodo(todo.id);
     }
-    function handlePopUp(){
-        onUpdateInput(todo.id)
+    function handlePopUp() {
+        onUpdateInput(todo.id);
+        deleteTodo(todo.id);
     }
 
     return (
