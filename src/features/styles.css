@@ -1,35 +1,38 @@
-.container {
+body {
+  background: #1e293b;
+  width: 100%;
+  height: 100%;
+}
+body .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #1e293b;
   color: #9ca3af;
   font-size: 10px;
   font-family: "Inter", sans-serif;
-  height: 100vh;
   padding-top: 10rem;
 }
-.container #header {
+body .container #header {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 3rem;
 }
-.container #header i {
+body .container #header i {
   font-size: 2rem;
 }
-.container #header h1 {
+body .container #header h1 {
   font-size: 2.5rem;
   font-weight: 600;
   margin: 0 2rem;
 }
-.container #main form {
+body .container #main form {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 3rem;
 }
-.container #main form .input {
+body .container #main form .input {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   margin-right: 2rem;
   background: #1e293b;
@@ -38,7 +41,7 @@
   display: flex;
   align-items: center;
 }
-.container #main form .input input {
+body .container #main form .input input {
   border: none;
   outline: none;
   background: #1e293b;
@@ -47,7 +50,7 @@
   width: 85%;
   font-size: 1rem;
 }
-.container #main form .input .btn {
+body .container #main form .input .btn {
   background: #1e293b;
   color: rgb(156, 163, 175);
   cursor: pointer;
@@ -56,10 +59,13 @@
   font-size: 1.5rem;
   padding: 2rem;
 }
-.container #main form .input .Toastify {
+body .container #main form .input .btn:hover {
+  color: rgba(156, 163, 175, 0.59);
+}
+body .container #main form .input .Toastify {
   font-size: 1.2rem;
 }
-.container #main form .select {
+body .container #main form .select {
   border: none;
   outline: none;
   padding: 2rem;
@@ -74,23 +80,23 @@
   flex-direction: column;
   position: relative;
 }
-.container #main form .select .select-option-choose i {
+body .container #main form .select .select-option-choose i {
   position: absolute;
   right: 1rem;
 }
-.container #main form .select .option {
+body .container #main form .select .option {
   position: absolute;
   top: 5rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   left: 0;
   z-index: 999;
 }
-.container #main form .select .option .select-option {
+body .container #main form .select .option .select-option {
   width: 9rem;
   padding: 2rem;
   border-bottom: 1px solid #0f172a;
   background: #1e293b;
 }
-.container #main form .select .option :hover {
+body .container #main form .select .option :hover {
   background: #171f2c;
 }/*# sourceMappingURL=styles.css.map */

@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import PropTypes from "prop-types";
 import "reset-css";
 import "./styles.css";
 import TodoItem from "./TodoItem";
@@ -10,14 +9,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 library.add(fas);
-
-TodoList.propTypes = {
-  todoList: PropTypes.array,
-};
-
-TodoList.defaultProps = {
-  todoList: [],
-};
 
 function TodoList() {
   const [todoList, setTodoList] = useState([
@@ -34,9 +25,9 @@ function TodoList() {
   ]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [currentOption, setCurrentOption] = useState("All");
+  const [filterStatus, setFilterStatus] = useState("all");
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
-  const [filterStatus, setFilterStatus] = useState("all");
 
   const handleShowDropdown = () => setShowDropdown((prev) => !prev);
   const handleOnclick = (pushTodoItem) => {
