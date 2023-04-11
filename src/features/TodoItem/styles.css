@@ -23,16 +23,21 @@ li.completed p i {
 li i {
   font-size: 1.2rem;
 }
-li i:first-child {
-  color: #EE4343;
+li .icon i:first-child {
+  color: rgb(170, 165, 6);
   margin-right: 1rem;
+}
+li .icon i:last-child {
+  color: #EE4343;
 }
 li .todo-title {
   position: relative;
-  width: 95%;
+  width: 90%;
+  height: 1rem;
 }
 li .todo-title i {
   position: absolute;
   right: 0;
   font-size: 1.2rem;
+  color: #EE4343;
 }/*# sourceMappingURL=styles.css.map */

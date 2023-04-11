@@ -32,9 +32,9 @@ function TodoList() {
   const handleShowDropdown = () => setShowDropdown((prev) => !prev);
   const handleOnclick = (pushTodoItem) => {
     pushTodoItem.preventDefault();
-    const inputValue = inputRef.current.value;
-    if (inputValue === "") {
-      toast.error('Pls, input string!',{
+    const inputValue = inputRef.current.value.trim();
+    if (inputValue === "" ) {
+      toast.error('Pls, input string!', {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -43,8 +43,8 @@ function TodoList() {
         draggable: true,
         progress: undefined,
         theme: "#161d30",
-        })
-        inputRef.current.value = "";
+      })
+      inputRef.current.value = "";
     }
     else {
       const newId = uuidv4();
@@ -100,6 +100,16 @@ function TodoList() {
       })
     );
   }
+  function handleUpdateTodoInput(todoId, newTitle, status) {
+    todoList.forEach((todo) => {
+      if (todo.id === todoId) {
+        inputRef.current.value = todo.title;
+        todo.title = newTitle;
+        todo.status = status;
+      }
+    })
+    setTodoList([...todoList]); 
+  }
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -136,22 +146,21 @@ function TodoList() {
               <FontAwesomeIcon icon="plus" />
             </button>
             <ToastContainer
-                position="top-center"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="#161d30" />
+              position="top-center"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="#161d30" />
           </div>
-          <div className="select" ref={dropdownRef}>
+          <div className="select" ref={dropdownRef} onClick={handleShowDropdown}>
             <div
               className="select-option-choose"
               value="all"
-              onClick={handleShowDropdown}
             >
               {currentOption}
               <i>
@@ -193,6 +202,7 @@ function TodoList() {
               todo={todo}
               deleteTodo={handleDeleteTodo}
               onUpdateStatus={handleUpdateTodoStatus}
+              onUpdateInput={handleUpdateTodoInput}
             ></TodoItem>
           ))}
         </ul>

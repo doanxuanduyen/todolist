@@ -14,10 +14,11 @@ TodoItem.propTypes = {
         status: PropTypes.string.isRequired,
     }).isRequired,
     onUpdateStatus: PropTypes.func.isRequired,
+    onUpdateInput: PropTypes.func.isRequired,
     deleteTodo: PropTypes.func,
 };
 
-function TodoItem({ todo, onUpdateStatus, deleteTodo }) {
+function TodoItem({ todo, onUpdateStatus, deleteTodo, onUpdateInput }) {
     const [active, setActive] = useState(false);
 
     function handleTodoOnclick() {
@@ -26,6 +27,9 @@ function TodoItem({ todo, onUpdateStatus, deleteTodo }) {
     }
     function handleDelete() {
         deleteTodo(todo.id);
+    }
+    function handlePopUp(){
+        onUpdateInput(todo.id)
     }
 
     return (
@@ -40,12 +44,12 @@ function TodoItem({ todo, onUpdateStatus, deleteTodo }) {
                 </i>
             </p>
             <div className="icon">
+                <i onClick={handlePopUp}>
+                    <FontAwesomeIcon icon="pen-to-square" />
+                </i>
                 <i onClick={handleDelete}>
                     <FontAwesomeIcon icon="trash-can" />
                 </i>
-                {/* <i>
-                    <FontAwesomeIcon icon="pen-to-square" />
-                </i> */}
             </div>
         </li>
     );
