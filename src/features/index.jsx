@@ -14,13 +14,13 @@ function TodoList() {
   const [todoList, setTodoList] = useState([
     {
       id: uuidv4(),
-      title: "Đọc sách lúc 2h chiều",
-      status: "uncompleted",
+      title: "Đi mua thịt lúc 4h30",
+      status: "completed",
     },
     {
       id: uuidv4(),
-      title: "Đi mua thịt lúc 4h30",
-      status: "completed",
+      title: "Đọc sách lúc 2h chiều",
+      status: "uncompleted",
     },
   ]);
   const [showDropdown, setShowDropdown] = useState(false);
