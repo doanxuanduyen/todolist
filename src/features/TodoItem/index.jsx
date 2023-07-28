@@ -18,7 +18,7 @@ TodoItem.propTypes = {
     deleteTodo: PropTypes.func,
 };
 
-function TodoItem({ todo, onUpdateStatus, deleteTodo, onUpdateInput }) {
+function TodoItem({ todo, onUpdateStatus, deleteTodo }) {
     const [active, setActive] = useState(false);
 
     function handleTodoOnclick() {
@@ -26,10 +26,6 @@ function TodoItem({ todo, onUpdateStatus, deleteTodo, onUpdateInput }) {
         onUpdateStatus(todo.id, active ? "uncompleted" : "completed");
     }
     function handleDelete() {
-        deleteTodo(todo.id);
-    }
-    function handlePopUp() {
-        onUpdateInput(todo.id);
         deleteTodo(todo.id);
     }
 
@@ -45,9 +41,6 @@ function TodoItem({ todo, onUpdateStatus, deleteTodo, onUpdateInput }) {
                 </i>
             </p>
             <div className="icon">
-                <i onClick={handlePopUp}>
-                    <FontAwesomeIcon icon="pen-to-square" />
-                </i>
                 <i onClick={handleDelete}>
                     <FontAwesomeIcon icon="trash-can" />
                 </i>

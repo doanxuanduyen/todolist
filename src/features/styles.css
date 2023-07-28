@@ -10,7 +10,7 @@ body .container {
   color: #9ca3af;
   font-size: 10px;
   font-family: "Inter", sans-serif;
-  padding-top: 10rem;
+  padding-top: 5rem;
 }
 body .container #header {
   display: flex;
@@ -58,9 +58,13 @@ body .container #main form .input .btn {
   outline: none;
   font-size: 1.5rem;
   padding: 2rem;
+  visibility: hidden;
 }
 body .container #main form .input .btn:hover {
   color: rgba(156, 163, 175, 0.59);
+}
+body .container #main form .input input:focus ~ button.btn {
+  visibility: visible;
 }
 body .container #main form .input .Toastify {
   font-size: 1.2rem;
@@ -95,7 +99,7 @@ body .container #main form .select .option {
 }
 body .container #main form .select .option .select-option {
   width: 9rem;
-  padding: 2rem;
+  padding: 2.3rem;
   border-bottom: 1px solid #0f172a;
   background: #1e293b;
 }
@@ -112,4 +116,28 @@ body .container #main form .select .option :hover {
   100% {
     transform: rotateX(0deg);
   }
+}
+body .container #main ul {
+  height: 40rem;
+  overflow: overlay;
+}
+
+::-webkit-scrollbar {
+  width: 1rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--white);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 0.3rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
 }/*# sourceMappingURL=styles.css.map */

@@ -3,26 +3,21 @@ import "reset-css";
 import "./styles.css";
 import TodoItem from "./TodoItem";
 import { v4 as uuidv4 } from "uuid";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 library.add(fas);
 
 function TodoList() {
-  const [todoList, setTodoList] = useState([
-    {
-      id: uuidv4(),
-      title: "Đi mua thịt lúc 4h30",
-      status: "completed",
-    },
-    {
-      id: uuidv4(),
-      title: "Đọc sách lúc 2h chiều",
-      status: "uncompleted",
-    },
-  ]);
+  const [todoList, setTodoList] = useState([]);
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("todoList"));
+    if (items) {
+      setTodoList(items);
+    }
+  }, []);
   const [showDropdown, setShowDropdown] = useState(false);
   const [currentOption, setCurrentOption] = useState("All");
   const [filterStatus, setFilterStatus] = useState("all");
@@ -33,9 +28,9 @@ function TodoList() {
   const handleOnclick = (pushTodoItem) => {
     pushTodoItem.preventDefault();
     const inputValue = inputRef.current.value.trim();
-    if (inputValue === "" ) {
-      toast.error('Pls, input string!', {
-        position: "top-center",
+    if (inputValue === "") {
+      toast.error("Pls, input string!", {
+        position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -43,13 +38,13 @@ function TodoList() {
         draggable: true,
         progress: undefined,
         theme: "#161d30",
-      })
+      });
       inputRef.current.value = "";
-    }
-    else {
+    } else {
       const newId = uuidv4();
       const newTodo = { id: newId, title: inputValue, status: "uncompleted" };
       setTodoList([...todoList, newTodo]);
+      localStorage.setItem("todoList", JSON.stringify([...todoList, newTodo]));
       inputRef.current.value = "";
     }
   };
@@ -59,6 +54,7 @@ function TodoList() {
   const handleDeleteTodo = (id) => {
     const updatedTodos = todoList.filter((todo) => todo.id !== id);
     setTodoList(updatedTodos);
+    localStorage.setItem("todoList", JSON.stringify(updatedTodos));
   };
   function handleSetOptionAll() {
     function handleSetCurrentOption() {
@@ -91,25 +87,14 @@ function TodoList() {
     handleShowOptionUncompleted();
   }
   function handleUpdateTodoStatus(todoId, newStatus) {
-    setTodoList(
-      todoList.map((todo) => {
-        if (todo.id === todoId) {
-          return { ...todo, status: newStatus };
-        }
-        return todo;
-      })
-    );
-  }
-  function handleUpdateTodoInput(todoId, newTitle) {
-    setTodoList(
-      todoList.map((todo) => {
-        if (todo.id === todoId) {
-          inputRef.current.value = todo.title;
-          return { ...todo, title: newTitle };
-        }
-        return todo;
-      })
-    );
+    const newTodoList = todoList.map((todo) => {
+      if (todo.id === todoId) {
+        return { ...todo, status: newStatus };
+      }
+      return todo;
+    });
+    setTodoList(newTodoList);
+    localStorage.setItem("todoList", JSON.stringify(newTodoList));
   }
   useEffect(() => {
     function handleClickOutside(event) {
@@ -147,7 +132,7 @@ function TodoList() {
               <FontAwesomeIcon icon="plus" />
             </button>
             <ToastContainer
-              position="top-center"
+              position="bottom-right"
               autoClose={3000}
               hideProgressBar={false}
               newestOnTop={false}
@@ -156,13 +141,15 @@ function TodoList() {
               pauseOnFocusLoss
               draggable
               pauseOnHover
-              theme="#161d30" />
+              theme="#161d30"
+            />
           </div>
-          <div className="select" ref={dropdownRef} onClick={handleShowDropdown}>
-            <div
-              className="select-option-choose"
-              value="all"
-            >
+          <div
+            className="select"
+            ref={dropdownRef}
+            onClick={handleShowDropdown}
+          >
+            <div className="select-option-choose" value="all">
               {currentOption}
               <i>
                 <FontAwesomeIcon icon="chevron-down" />
@@ -196,15 +183,14 @@ function TodoList() {
           </div>
         </form>
         {/* Todo items */}
-        <ul>
+        <ul className="todoItem">
           {rederTodoList.map((todo) => (
             <TodoItem
               key={todo.id}
               todo={todo}
               deleteTodo={handleDeleteTodo}
               onUpdateStatus={handleUpdateTodoStatus}
-              onUpdateInput={handleUpdateTodoInput}
-            ></TodoItem>
+            />
           ))}
         </ul>
       </main>
