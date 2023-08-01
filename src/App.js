@@ -1,11 +1,11 @@
 import React from "react";
-import TodoList from "./features";
 import './fonts.css';
+import Todo from "./components/todo";
 
 function App() {
   return (
-    <div className="App">
-      <TodoList/>
+    <div className="App bg-background h-screen p-16 flex flex-col gap-8">
+      <Todo/>
     </div>
   );
 }
